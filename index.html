@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Dojazdomat – darmowe kalkulatory kosztów dojazdu, paliwa i podróży samochodem. Sprawdź, ile naprawdę kosztuje Cię jazda autem.">
+  <meta name="theme-color" content="#10243a">
+  <title>Dojazdomat – policz, ile kosztuje Cię jazda</title>
+  <style>
+    :root{--navy:#10243a;--navy2:#183651;--green:#19a878;--green2:#e7f7f0;--ink:#172b3d;--muted:#657789;--line:#e5ebef;--bg:#f5f8fa;--white:#fff;--shadow:0 16px 44px rgba(16,36,58,.09)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg);line-height:1.55}
+    a{color:inherit;text-decoration:none}.wrap{width:min(1120px,calc(100% - 40px));margin:auto}
+    header{background:var(--navy);color:white;position:sticky;top:0;z-index:10;border-bottom:1px solid rgba(255,255,255,.1)}
+    .nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:11px;font-weight:850;font-size:21px;letter-spacing:-.6px}.brand-mark{width:38px;height:38px;border-radius:12px;background:var(--green);display:grid;place-items:center;color:white;font-size:21px}
+    nav{display:flex;align-items:center;gap:27px;color:#d7e2eb;font-size:14px}nav a:hover{color:white}.nav-cta{background:var(--green);padding:10px 16px;border-radius:10px;color:white;font-weight:750}
+    .hero{background:radial-gradient(ellipse at 80% 15%,#244c62 0,transparent 42%),linear-gradient(120deg,#10243a,#17344c);color:white;padding:76px 0 84px;overflow:hidden}
+    .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;align-items:center;gap:55px}.eyebrow{display:inline-flex;align-items:center;gap:8px;color:#a8e8cf;font-weight:750;font-size:12px;letter-spacing:1.2px;text-transform:uppercase}.dot{width:7px;height:7px;background:#39d69f;border-radius:50%}
+    h1{font-size:clamp(38px,5vw,58px);line-height:1.06;letter-spacing:-2.3px;margin:18px 0}.hero p{color:#d0dce5;font-size:17px;max-width:560px;margin:0 0 27px}.btn{display:inline-flex;justify-content:center;align-items:center;border:0;border-radius:11px;padding:13px 19px;background:var(--green);color:white;font-weight:800;font-size:14px;cursor:pointer;transition:.2s}.btn:hover{filter:brightness(1.06);transform:translateY(-1px)}.btn-outline{background:white;color:var(--navy);border:1px solid var(--line)}
+    .hero-card{background:white;color:var(--ink);border-radius:22px;padding:24px;box-shadow:0 24px 70px rgba(0,0,0,.2);transform:rotate(1deg)}.hc-top{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:12px;font-weight:750}.hc-number{font-size:42px;font-weight:900;letter-spacing:-1.5px;margin:13px 0 2px}.hc-number span{font-size:17px;color:var(--muted);font-weight:650}.hc-bar{height:9px;background:#edf2f4;border-radius:99px;overflow:hidden;margin:18px 0}.hc-bar i{display:block;width:68%;height:100%;background:var(--green);border-radius:99px}.hc-row{display:flex;justify-content:space-between;padding:11px 0;border-top:1px solid var(--line);font-size:13px}.hc-row strong{color:var(--navy)}
+    main{padding:55px 0 80px}.section-head{text-align:center;max-width:650px;margin:0 auto 30px}.section-head .kicker{color:var(--green);font-weight:850;font-size:12px;letter-spacing:1.1px;text-transform:uppercase}.section-head h2{font-size:34px;letter-spacing:-1.2px;margin:8px 0}.section-head p{color:var(--muted);margin:0}
+    .tools{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:28px}.tool{background:white;border:1px solid var(--line);border-radius:15px;padding:17px;text-align:left;cursor:pointer;display:flex;gap:13px;align-items:center;transition:.2s;color:var(--ink)}.tool:hover,.tool.active{border-color:#8bd9bd;box-shadow:0 7px 22px rgba(25,168,120,.08)}.tool.active{background:#f1fbf6}.tool-icon{width:43px;height:43px;display:grid;place-items:center;background:#edf7f3;border-radius:12px;font-size:21px;flex:none}.tool b{display:block;font-size:14px}.tool small{color:var(--muted);font-size:12px}
+    .calculator{display:grid;grid-template-columns:1fr .82fr;gap:20px;align-items:stretch}.panel{background:white;border:1px solid var(--line);border-radius:19px;padding:27px;box-shadow:var(--shadow)}.panel h3{margin:0 0 5px;font-size:21px;letter-spacing:-.5px}.sub{margin:0 0 23px;color:var(--muted);font-size:13px}.fields{display:grid;grid-template-columns:1fr 1fr;gap:17px}.field label{display:block;font-size:12px;font-weight:750;color:#405467;margin-bottom:7px}.field input{width:100%;border:1px solid #dce5e9;border-radius:10px;padding:12px 13px;font:inherit;color:var(--ink);outline:none;background:#fff}.field input:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(25,168,120,.12)}.field.full{grid-column:1/-1}.hint{font-size:11px;color:var(--muted);margin-top:5px}.result{background:var(--navy);color:white;border-radius:17px;padding:25px;display:flex;flex-direction:column;justify-content:space-between;min-height:100%}.result-label{color:#b9c9d5;font-size:12px;font-weight:750;text-transform:uppercase;letter-spacing:.8px}.total{font-size:43px;letter-spacing:-1.5px;font-weight:900;margin:5px 0 2px}.total small{font-size:16px;letter-spacing:0;color:#b9c9d5}.result-note{font-size:12px;color:#b9c9d5}.result-lines{margin-top:23px}.result-line{display:flex;justify-content:space-between;gap:10px;padding:12px 0;border-top:1px solid rgba(255,255,255,.13);font-size:13px}.result-line span{color:#c1ced8}.result-line strong{white-space:nowrap}.result .fine{font-size:11px;color:#aebdca;margin-top:15px}
+    .info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px;margin-top:70px}.info{background:white;border:1px solid var(--line);border-radius:16px;padding:22px}.info .emoji{font-size:24px}.info h3{font-size:16px;margin:10px 0 5px}.info p{font-size:13px;color:var(--muted);margin:0}
+    .about{margin-top:65px;background:#eaf4f1;border-radius:20px;padding:30px;display:grid;grid-template-columns:1fr 1fr;gap:25px;align-items:center}.about h2{margin:0 0 8px;font-size:25px;letter-spacing:-.7px}.about p{margin:0;color:#536c70;font-size:14px}.about-stat{display:flex;gap:12px;flex-wrap:wrap}.stat{background:white;padding:13px 16px;border-radius:12px;min-width:125px}.stat strong{display:block;font-size:20px;color:var(--navy)}.stat span{font-size:11px;color:var(--muted)}
+    footer{background:var(--navy);color:#c4d1db;padding:30px 0;font-size:12px}.foot{display:flex;justify-content:space-between;gap:20px;align-items:center}.foot strong{color:white;font-size:15px}
+    .hidden{display:none!important}.mobile-menu{display:none}
+    @media(max-width:800px){.hero-grid{grid-template-columns:1fr;gap:35px}.hero{padding:55px 0}.hero-card{max-width:460px}.calculator{grid-template-columns:1fr}.tools{grid-template-columns:1fr}.info-grid{grid-template-columns:1fr}.about{grid-template-columns:1fr}.nav{height:66px}nav{gap:14px;font-size:12px}}
+    @media(max-width:560px){.wrap{width:min(100% - 28px,1120px)}nav a:not(.nav-cta){display:none}.nav-cta{padding:9px 12px}.hero p{font-size:15px}h1{letter-spacing:-1.6px}.panel{padding:20px}.fields{gap:13px}.field input{padding:11px}.total{font-size:38px}.foot{align-items:flex-start;flex-direction:column}.section-head h2{font-size:28px}}
+  </style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#" aria-label="Dojazdomat – strona główna"><span class="brand-mark">↗</span>dojazdomat<span style="color:#43d6a3">.</span></a>
+    <nav aria-label="Menu główne"><a href="#kalkulatory">Kalkulatory</a><a href="#jak-dziala">Jak to działa?</a><a href="#onas">O projekcie</a><a class="nav-cta" href="#kalkulatory">Oblicz koszty</a></nav>
+  </div>
+</header>
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow"><span class="dot"></span> Darmowe kalkulatory dla kierowców</div>
+      <h1>Sprawdź, ile naprawdę kosztuje Cię jazda.</h1>
+      <p>Paliwo, dojazdy do pracy i podróże. Policz wydatki w kilka sekund i podejmuj lepsze decyzje za kierownicą.</p>
+      <a class="btn" href="#kalkulatory">Uruchom kalkulator <span style="margin-left:10px">→</span></a>
+    </div>
+    <div class="hero-card" aria-label="Przykładowe podsumowanie kosztów">
+      <div class="hc-top"><span>PRZYKŁADOWE PODSUMOWANIE</span><span>🚗</span></div>
+      <div class="hc-number">462,00 <span>zł / miesiąc</span></div>
+      <div style="font-size:12px;color:#657789">Szacunkowy koszt paliwa przy dojazdach do pracy</div>
+      <div class="hc-bar"><i></i></div>
+      <div class="hc-row"><span>Dystans miesięczny</span><strong>660 km</strong></div>
+      <div class="hc-row"><span>Średnie spalanie</span><strong>7 l / 100 km</strong></div>
+      <div class="hc-row"><span>Cena paliwa</span><strong>10,00 zł / l</strong></div>
+    </div>
+  </div>
+</section>
+<main class="wrap" id="kalkulatory">
+  <div class="section-head">
+    <div class="kicker">Policz za darmo</div>
+    <h2>Wybierz kalkulator</h2>
+    <p>Wpisz swoje dane. Wynik aktualizuje się automatycznie – bez rejestracji i bez ukrytych opłat.</p>
+  </div>
+  <div class="tools" role="tablist" aria-label="Rodzaj kalkulatora">
+    <button class="tool active" data-tab="commute" role="tab" aria-selected="true"><span class="tool-icon">🏢</span><span><b>Dojazdy do pracy</b><small>Miesięczny i roczny koszt</small></span></button>
+    <button class="tool" data-tab="fuel" role="tab" aria-selected="false"><span class="tool-icon">⛽</span><span><b>Kalkulator spalania</b><small>Zużycie i koszt paliwa</small></span></button>
+    <button class="tool" data-tab="trip" role="tab" aria-selected="false"><span class="tool-icon">🧭</span><span><b>Koszt podróży</b><small>Oblicz koszt trasy</small></span></button>
+  </div>
+
+  <section class="calculator" id="calc-commute">
+    <div class="panel">
+      <h3>Koszt dojazdów do pracy</h3><p class="sub">Podaj parametry codziennych dojazdów.</p>
+      <div class="fields">
+        <div class="field"><label for="c-distance">Dzienny dystans (km)</label><input id="c-distance" type="number" min="0" step="1" value="30"></div>
+        <div class="field"><label for="c-days">Dni w miesiącu</label><input id="c-days" type="number" min="0" max="31" step="1" value="22"></div>
+        <div class="field"><label for="c-consumption">Spalanie (l/100 km)</label><input id="c-consumption" type="number" min="0" step=".1" value="7"></div>
+        <div class="field"><label for="c-price">Cena paliwa (zł/l)</label><input id="c-price" type="number" min="0" step=".01" value="6.50"></div>
+        <div class="field full"><label for="c-parking">Parking za dzień (zł)</label><input id="c-parking" type="number" min="0" step=".5" value="0"><div class="hint">Jeśli parkujesz za darmo, pozostaw 0.</div></div>
+      </div>
+    </div>
+    <div class="result" aria-live="polite">
+      <div><div class="result-label">Twój miesięczny koszt dojazdów</div><div class="total" id="c-total">300,30 <small>zł</small></div><div class="result-note">Szacunkowy koszt paliwa i parkingu</div></div>
+      <div class="result-lines">
+        <div class="result-line"><span>Paliwo miesięcznie</span><strong id="c-fuel">300,30 zł</strong></div>
+        <div class="result-line"><span>Parking miesięcznie</span><strong id="c-park">0,00 zł</strong></div>
+        <div class="result-line"><span>Dystans miesięcznie</span><strong id="c-km">660 km</strong></div>
+        <div class="result-line"><span>Koszt roczny</span><strong id="c-year">3 603,60 zł</strong></div>
+        <div class="result-line"><span>Koszt kilometra</span><strong id="c-perkm">0,46 zł</strong></div>
+      </div>
+      <div class="fine">Wynik nie obejmuje ubezpieczenia, serwisu, amortyzacji ani innych kosztów samochodu.</div>
+    </div>
+  </section>
+
+  <section class="calculator hidden" id="calc-fuel">
+    <div class="panel">
+      <h3>Kalkulator spalania</h3><p class="sub">Oblicz średnie spalanie lub koszt przejechania wybranego dystansu.</p>
+      <div class="fields">
+        <div class="field"><label for="f-litres">Zużyte paliwo (litry)</label><input id="f-litres" type="number" min="0" step=".1" value="42"></div>
+        <div class="field"><label for="f-distance">Przejechany dystans (km)</label><input id="f-distance" type="number" min="0" step="1" value="600"></div>
+        <div class="field full"><label for="f-price">Cena paliwa (zł/l)</label><input id="f-price" type="number" min="0" step=".01" value="6.50"></div>
+      </div>
+    </div>
+    <div class="result" aria-live="polite">
+      <div><div class="result-label">Średnie spalanie</div><div class="total" id="f-consumption">7,00 <small>l/100 km</small></div><div class="result-note">Na podstawie podanych danych</div></div>
+      <div class="result-lines">
+        <div class="result-line"><span>Koszt przejazdu</span><strong id="f-cost">273,00 zł</strong></div>
+        <div class="result-line"><span>Koszt 100 km</span><strong id="f-per100">45,50 zł</strong></div>
+        <div class="result-line"><span>Koszt 1 km</span><strong id="f-perkm">0,46 zł</strong></div>
+      </div>
+      <div class="fine">To obliczenie szacunkowe. Rzeczywiste spalanie może się różnić w zależności od warunków jazdy.</div>
+    </div>
+  </section>
+
+  <section class="calculator hidden" id="calc-trip">
+    <div class="panel">
+      <h3>Koszt podróży samochodem</h3><p class="sub">Oszacuj koszt paliwa dla całej trasy, także w obie strony.</p>
+      <div class="fields">
+        <div class="field"><label for="t-distance">Długość trasy w jedną stronę (km)</label><input id="t-distance" type="number" min="0" step="1" value="250"></div>
+        <div class="field"><label for="t-consumption">Spalanie (l/100 km)</label><input id="t-consumption" type="number" min="0" step=".1" value="7"></div>
+        <div class="field"><label for="t-price">Cena paliwa (zł/l)</label><input id="t-price" type="number" min="0" step=".01" value="6.50"></div>
+        <div class="field"><label for="t-passengers">Liczba osób w aucie</label><input id="t-passengers" type="number" min="1" step="1" value="1"></div>
+        <div class="field full"><label for="t-extra">Dodatkowe opłaty za całą podróż (zł)</label><input id="t-extra" type="number" min="0" step=".5" value="0"><div class="hint">Np. autostrady i parkingi.</div></div>
+      </div>
+    </div>
+    <div class="result" aria-live="polite">
+      <div><div class="result-label">Koszt podróży w obie strony</div><div class="total" id="t-total">227,50 <small>zł</small></div><div class="result-note">Paliwo plus dodatkowe opłaty</div></div>
+      <div class="result-lines">
+        <div class="result-line"><span>Dystans w obie strony</span><strong id="t-km">500 km</strong></div>
+        <div class="result-line"><span>Koszt paliwa</span><strong id="t-fuel">227,50 zł</strong></div>
+        <div class="result-line"><span>Dodatkowe opłaty</span><strong id="t-fees">0,00 zł</strong></div>
+        <div class="result-line"><span>Koszt na osobę</span><strong id="t-person">227,50 zł</strong></div>
+      </div>
+      <div class="fine">Zakładamy przejazd tam i z powrotem. Nie uwzględniamy zużycia auta i ewentualnych nieplanowanych wydatków.</div>
+    </div>
+  </section>
+
+  <div class="info-grid" id="jak-dziala">
+    <article class="info"><div class="emoji">⚡</div><h3>Szybkie obliczenia</h3><p>Wpisujesz kilka wartości i od razu widzisz szacunkowy koszt.</p></article>
+    <article class="info"><div class="emoji">🔒</div><h3>Bez rejestracji</h3><p>Kalkulatory działają bez zakładania konta i podawania danych osobowych.</p></article>
+    <article class="info"><div class="emoji">📱</div><h3>Na każdym urządzeniu</h3><p>Strona dopasowuje się do telefonu, tabletu i komputera.</p></article>
+  </div>
+  <section class="about" id="onas">
+    <div><h2>Mądrze planuj wydatki na drodze.</h2><p>Dojazdomat to prosty projekt, którego celem jest pomaganie kierowcom w codziennych decyzjach. Zaczynamy od podstawowych kalkulatorów i będziemy rozwijać go o kolejne przydatne narzędzia.</p></div>
+    <div class="about-stat"><div class="stat"><strong>3</strong><span>bezpłatne kalkulatory</span></div><div class="stat"><strong>0 zł</strong><span>za korzystanie</span></div><div class="stat"><strong>24/7</strong><span>dostęp online po publikacji</span></div></div>
+  </section>
+</main>
+<footer><div class="wrap foot"><div><strong>dojazdomat<span style="color:#43d6a3">.</span></strong><div>Praktyczne kalkulatory dla kierowców.</div></div><div>© <span id="year"></span> Dojazdomat. Wyniki mają charakter szacunkowy.</div></div></footer>
+<script>
+  const $ = id => document.getElementById(id);
+  const val = id => Math.max(0, Number($(id).value) || 0);
+  const fmt = n => n.toLocaleString('pl-PL',{minimumFractionDigits:2,maximumFractionDigits:2});
+  const put = (id,text) => $(id).textContent = text;
+  function commute(){
+    const km=val('c-distance')*val('c-days'), fuel=km*val('c-consumption')/100*val('c-price'), park=val('c-parking')*val('c-days'), total=fuel+park;
+    put('c-total',fmt(total)); put('c-fuel',fmt(fuel)+' zł'); put('c-park',fmt(park)+' zł'); put('c-km',Math.round(km).toLocaleString('pl-PL')+' km'); put('c-year',fmt(total*12)+' zł'); put('c-perkm',fmt(km?total/km:0)+' zł');
+  }
+  function fuel(){
+    const litres=val('f-litres'),km=val('f-distance'),price=val('f-price'),cons=km?litres/km*100:0,cost=litres*price;
+    put('f-consumption',fmt(cons));put('f-cost',fmt(cost)+' zł');put('f-per100',fmt(cons/100*price*100)+' zł');put('f-perkm',fmt(km?cost/km:0)+' zł');
+  }
+  function trip(){
+    const km=val('t-distance')*2, fuelCost=km*val('t-consumption')/100*val('t-price'),fees=val('t-extra'),total=fuelCost+fees,people=Math.max(1,Math.floor(val('t-passengers')));
+    put('t-total',fmt(total));put('t-km',Math.round(km).toLocaleString('pl-PL')+' km');put('t-fuel',fmt(fuelCost)+' zł');put('t-fees',fmt(fees)+' zł');put('t-person',fmt(total/people)+' zł');
+  }
+  document.querySelectorAll('input').forEach(input=>input.addEventListener('input',()=>{commute();fuel();trip()}));
+  document.querySelectorAll('.tool').forEach(btn=>btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tool').forEach(b=>{b.classList.remove('active');b.setAttribute('aria-selected','false')});
+    btn.classList.add('active');btn.setAttribute('aria-selected','true');
+    ['commute','fuel','trip'].forEach(name=>$('calc-'+name).classList.toggle('hidden',name!==btn.dataset.tab));
+  }));
+  $('year').textContent=new Date().getFullYear();commute();fuel();trip();
+</script>
+</body>
+</html>
